@@ -1,25 +1,55 @@
-
-{ config, lib, pkgs, inputs, ... }:
-
-  # Mise en place des grammaires pour treesitter dans neovim
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+# Mise en place des grammaires pour treesitter dans neovim
 let
   myParsers = pkgs.symlinkJoin {
     name = "nvim-treesitter-parsers";
     paths = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-     astro bash c css fish gitcommit html javascript json json5
-     lua markdown markdown_inline python query rasi regex
-     scss toml tsx typescript vim vimdoc yaml
+      astro
+      bash
+      c
+      css
+      fish
+      gitcommit
+      html
+      javascript
+      json
+      json5
+      lua
+      markdown
+      markdown_inline
+      nix
+      python
+      query
+      rasi
+      regex
+      scss
+      toml
+      tsx
+      typescript
+      vim
+      vimdoc
+      yaml
     ];
- };
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  };
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  # Limite le nombre de profiles Nixos (! utiliser le garbage collector pour supprimer le contenu)
+  # Limite l'affichage des versions dans le boot
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "denislab"; # Define your hostname.
@@ -53,7 +83,7 @@ in
 
   # Enable flakes
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
     download-buffer-size = 268435456;
     trusted-users = ["root" "denis"];
     extra-substituters = ["https://hyprland.cachix.org"];
@@ -66,16 +96,13 @@ in
     settings = {
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${config.programs.hyprland.package}/bin/start-hyprland";
-	user = "greeter";
+        user = "greeter";
       };
     };
   };
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "fr";
@@ -101,7 +128,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.denis = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -118,25 +145,24 @@ in
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  environment.systemPackages = with pkgs; [
-    brave
-    capitaine-cursors
-    clang-tools
-    gcc
-    kitty
-    lm_sensors
-    neovim
-    playerctl
-    pwvucontrol
-    rofi
-    thunar
-    tree-sitter
-    waybar
-    wget
-    wlogout
-    wlsunset
-    inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
-  ] ++ [ myParsers ];
+  environment.systemPackages = with pkgs;
+    [
+      brave
+      clang-tools
+      gcc
+      kitty
+      lm_sensors
+      neovim
+      playerctl
+      pwvucontrol
+      tree-sitter
+      waybar
+      wget
+      wlogout
+      wlsunset
+      inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
+    ]
+    ++ [myParsers];
 
   environment.variables.NVIM_TREESITTER_PARSERS = "${myParsers}";
 
@@ -155,10 +181,9 @@ in
   # Setup de fish comme shell par defaut sur tout le système
   programs.fish = {
     enable = true;
-    shellAbbrs = { nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab"; };
+    shellAbbrs = {nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab";};
   };
   users.users.denis.shell = pkgs.fish;
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -178,5 +203,4 @@ in
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-
 }

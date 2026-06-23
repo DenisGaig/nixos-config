@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland/v0.55.0";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -21,10 +20,10 @@
   }: {
     nixosConfigurations.denislab = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
-	    ./hardware-configuration.nix
+        ./hardware-configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -32,7 +31,7 @@
             useUserPackages = true;
             users.denis = import ./home.nix;
             backupFileExtension = "backup";
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = {inherit inputs;};
           };
         }
       ];

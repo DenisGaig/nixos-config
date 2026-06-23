@@ -160,10 +160,10 @@ in {
       wget
       wlogout
       wlsunset
-      inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
     ]
     ++ [myParsers];
 
+  # inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
   environment.variables.NVIM_TREESITTER_PARSERS = "${myParsers}";
 
   # Installation des fonts

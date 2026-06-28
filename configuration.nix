@@ -45,10 +45,9 @@ in {
 
   # Use the systemd-boot EFI boot loader.
   # Limite le nombre de profiles Nixos (! utiliser le garbage collector pour supprimer le contenu)
-  # Limite l'affichage des versions dans le boot
   boot.loader.systemd-boot = {
     enable = true;
-    configurationLimit = 10;
+    configurationLimit = 10; # Limite l'affichage des versions dans le boot
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -77,8 +76,6 @@ in {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   };
 
   # Enable flakes
@@ -86,8 +83,6 @@ in {
     experimental-features = ["nix-command" "flakes"];
     download-buffer-size = 268435456;
     trusted-users = ["root" "denis"];
-    extra-substituters = ["https://hyprland.cachix.org"];
-    extra-trusted-public-keys = ["hyprland.cacix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
   # Lancement auto de Hyprland au démarrage avec TUIgreet
@@ -150,7 +145,6 @@ in {
       brave
       clang-tools
       gcc
-      kitty
       lm_sensors
       neovim
       playerctl
@@ -179,10 +173,7 @@ in {
   };
 
   # Setup de fish comme shell par defaut sur tout le système
-  programs.fish = {
-    enable = true;
-    shellAbbrs = {nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab";};
-  };
+  programs.fish.enable = true;
   users.users.denis.shell = pkgs.fish;
 
   # Some programs need SUID wrappers, can be configured further or are

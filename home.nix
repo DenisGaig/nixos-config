@@ -22,6 +22,8 @@
     hyprpicker
     imagemagick
     isort
+    kitty
+    lazygit
     markdown-oxide
     lua-language-server
     prettier
@@ -33,6 +35,7 @@
     yaml-language-server
   ];
 
+  # PROGRAMS
   programs.fish = {
     enable = true;
 
@@ -58,6 +61,7 @@
 
     shellAbbrs = {
       nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab";
+      brain = "ssh toshiba -t 'cd ~/brain && nvim'";
     };
 
     interactiveShellInit = ''

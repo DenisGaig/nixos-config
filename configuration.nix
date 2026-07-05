@@ -142,7 +142,6 @@ in {
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs;
     [
-      brave
       clang-tools
       gcc
       lm_sensors
@@ -150,7 +149,6 @@ in {
       playerctl
       pwvucontrol
       tree-sitter
-      waybar
       wget
       wlogout
       wlsunset
@@ -170,6 +168,17 @@ in {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+  };
+
+  # Permet l'exécution de binaires ELF génériques (non compilés pour NixOS)
+  # ex: binaires téléchargés par neovim (LSP, windsurf/neocodeium...)
+  # sans cela, ces binaires échouent car /lib/ld-linux-x86-64.so.2 est absent
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib # libstdc++ librairie C++ standard
+      zlib # libz — compression, utilisée partout
+    ];
   };
 
   # Setup de fish comme shell par defaut sur tout le système

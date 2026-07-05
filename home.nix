@@ -20,10 +20,14 @@
     alejandra
     bash-language-server
     black
+    brave
     calc
+    curl
+    curl.dev
     dprint
     eza
     fd
+    gnumake
     grimblast
     hyprpaper
     hyprpicker
@@ -33,14 +37,20 @@
     lazygit
     markdown-oxide
     lua-language-server
+    pkg-config
     prettier
     rofi
     thunar
     stylua
     vscode-langservers-extracted
+    waybar
     wl-clipboard
     yaml-language-server
   ];
+
+  home.sessionVariables = {
+    PKG_CONFIG_PATH = "/etc/profiles/per-user/denis/lib/pkgconfig";
+  };
 
   # PROGRAMS
 

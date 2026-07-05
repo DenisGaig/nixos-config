@@ -7,6 +7,13 @@
       ls = "eza --icons=auto";
       ya = "yazi";
       nv = "nvim";
+      mkdir = "mkdir -pv";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      cp = "cp -iv";
+      mv = "mv -iv";
+      ln = "ln -iv";
+      rm = "rm -I --preserve-root";
 
       g = "git";
       gl = "git log";

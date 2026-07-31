@@ -148,6 +148,7 @@ in {
       neovim
       playerctl
       pwvucontrol
+      syncthing
       tree-sitter
       wget
       wlogout
@@ -194,10 +195,21 @@ in {
   # };
 
   # List services that you want to enable:
-
+  services.syncthing = {
+    enable = true;
+    user = "denis";
+    dataDir = "/home/denis";
+    configDir = "/home/denis/.config/syncthing";
+  };
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
+
+  # Enable Tailscale
+  services.tailscale.enable = true;
+  networking.firewall.trustedInterfaces = ["tailscale0"];
+  # Optionnel mais recommandé si tu veux SSH via Tailscale identity plus tard :
+  networking.firewall.checkReversePath = "loose";
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

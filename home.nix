@@ -8,6 +8,8 @@
     ./modules/fzf.nix
     ./modules/dunst.nix
     ./modules/git.nix
+    ./modules/mise.nix
+    ./modules/mpv.nix
   ];
 
   home.username = "denis";
@@ -18,6 +20,7 @@
   home.packages = with pkgs; [
     astro-language-server
     alejandra
+    art
     bash-language-server
     black
     brave
@@ -37,6 +40,7 @@
     lazygit
     markdown-oxide
     lua-language-server
+    nsxiv
     pkg-config
     prettier
     rofi
@@ -74,6 +78,8 @@
     enable = true;
     enableFishIntegration = true;
   };
+
+  programs.zathura.enable = true;
 
   # MODULES
   gtk = {

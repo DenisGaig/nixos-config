@@ -4,7 +4,8 @@
     config = {
       profile = "gpu-hq";
       vo = "gpu-next";
-      hwdec = "auto-safe";
+      # hwdec = "auto-safe";
+      hwdec = "vaapi";
 
       save-position-on-quit = "yes";
       keep-open = "yes";

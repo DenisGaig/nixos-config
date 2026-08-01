@@ -20,14 +20,14 @@
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
-        ./configuration.nix
+        ./modules/system
         ./hardware-configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.denis = import ./home.nix;
+            users.denis = import ./modules/user;
             backupFileExtension = "backup";
             extraSpecialArgs = {inherit inputs;};
           };

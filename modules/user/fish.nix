@@ -31,7 +31,7 @@
 
     shellAbbrs = {
       nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab";
-      brain = "ssh toshiba -t 'cd ~/brain && nvim'";
+      # brain = "ssh toshiba -t 'cd ~/brain && nvim'";
     };
 
     interactiveShellInit = ''

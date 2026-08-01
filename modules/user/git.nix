@@ -16,4 +16,5 @@
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
     };
   };
+  services.ssh-agent.enable = true;
 }

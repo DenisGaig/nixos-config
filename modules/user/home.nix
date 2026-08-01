@@ -3,15 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./modules/fish.nix
-    ./modules/fzf.nix
-    ./modules/dunst.nix
-    ./modules/git.nix
-    ./modules/mise.nix
-    ./modules/mpv.nix
-  ];
-
   home.username = "denis";
   home.homeDirectory = "/home/denis";
   # Ne JAMAIS changer cette valeur après le premier build

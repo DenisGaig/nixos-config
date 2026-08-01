@@ -38,11 +38,6 @@ let
     ];
   };
 in {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   # Use the systemd-boot EFI boot loader.
   # Limite le nombre de profiles Nixos (! utiliser le garbage collector pour supprimer le contenu)
   boot.loader.systemd-boot = {

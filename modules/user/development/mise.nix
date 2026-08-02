@@ -2,7 +2,7 @@
   programs.mise = {
     enable = true;
     enableFishIntegration = true;
-    settings = {
+    globalConfig.settings = {
       all_compile = false;
     };
   };

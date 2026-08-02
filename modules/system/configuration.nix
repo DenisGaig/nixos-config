@@ -38,34 +38,9 @@ let
     ];
   };
 in {
-  # Use the systemd-boot EFI boot loader.
-  # Limite le nombre de profiles Nixos (! utiliser le garbage collector pour supprimer le contenu)
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 10; # Limite l'affichage des versions dans le boot
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "denislab"; # Define your hostname.
-
-  # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus32";
-    keyMap = "fr-latin9";
-  };
-  # Present avant dans console
-  # useXkbConfig = true; # use xkb.options in tty.
 
   # Hyrpland settings
   programs.hyprland = {
@@ -146,8 +121,6 @@ in {
       syncthing
       tree-sitter
       wget
-      wlogout
-      wlsunset
     ]
     ++ [myParsers];
 
@@ -199,12 +172,6 @@ in {
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
-
-  # Enable Tailscale
-  services.tailscale.enable = true;
-  networking.firewall.trustedInterfaces = ["tailscale0"];
-  # Optionnel mais recommandé si tu veux SSH via Tailscale identity plus tard :
-  networking.firewall.checkReversePath = "loose";
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

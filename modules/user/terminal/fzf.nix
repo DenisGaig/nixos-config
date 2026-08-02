@@ -1,10 +1,8 @@
-{ ... }:
-
-{
+{...}: {
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
-
+    historyWidget.command = "";
     defaultCommand = "fd --type f --hidden --exclude .git";
 
     defaultOptions = [

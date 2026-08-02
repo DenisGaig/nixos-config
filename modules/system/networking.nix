@@ -13,4 +13,8 @@
   networking.firewall.trustedInterfaces = ["tailscale0"];
   # Optionnel mais recommandé si tu veux SSH via Tailscale identity plus tard :
   networking.firewall.checkReversePath = "loose";
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 }

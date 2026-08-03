@@ -23,15 +23,15 @@
         ./modules/system
         ./hosts/homelab
         home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.denis = import ./modules/user;
-            backupFileExtension = "backup";
-            extraSpecialArgs = {inherit inputs;};
-          };
-        }
+        # {
+        #   home-manager = {
+        #     useGlobalPkgs = true;
+        #     useUserPackages = true;
+        #     users.denis = import ./modules/user;
+        #     backupFileExtension = "backup";
+        #     extraSpecialArgs = {inherit inputs;};
+        #   };
+        # }
       ];
     };
   };

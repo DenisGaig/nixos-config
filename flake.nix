@@ -27,7 +27,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.denis = import ./modules/user;
+            #users.denis = import ./modules/user;
             backupFileExtension = "backup";
             extraSpecialArgs = {inherit inputs;};
           };

@@ -37,10 +37,7 @@ in {
       clang-tools
       gcc
       lm_sensors
-      playerctl
-      pwvucontrol
       tree-sitter
-      wget
     ]
     ++ [myParsers];
 

@@ -19,6 +19,7 @@ in {
       curl
       curl.dev
       rsync
+      wget
       wl-clipboard
     ];
 

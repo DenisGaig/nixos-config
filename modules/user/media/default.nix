@@ -15,6 +15,7 @@ in {
       art
       imagemagick
       nsxiv
+      playerctl
     ];
     userSettings.mpv.enable = lib.mkDefault true;
   };

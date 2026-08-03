@@ -1,6 +1,18 @@
-{pkgs, ...}: {
-  #home.packages = with pkgs; [
-  #];
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.userSettings.documents;
+in {
+  options.userSettings.documents = {
+    enable = lib.mkEnableOption "Install document packages";
+  };
 
-  programs.zathura.enable = true;
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      zathura
+    ];
+  };
 }

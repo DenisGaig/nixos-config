@@ -1,20 +1,33 @@
-{...}: {
-  programs.mpv = {
-    enable = true;
-    config = {
-      profile = "gpu-hq";
-      vo = "gpu-next";
-      # hwdec = "auto-safe";
-      hwdec = "vaapi";
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.userSettings.mpv;
+in {
+  options.userSettings.mpv = {
+    enable = lib.mkEnableOption "Install mpv package";
+  };
 
-      save-position-on-quit = "yes";
-      keep-open = "yes";
+  config = lib.mkIf cfg.enable {
+    programs.mpv = {
+      enable = true;
+      config = {
+        profile = "gpu-hq";
+        vo = "gpu-next";
+        # hwdec = "auto-safe";
+        hwdec = "vaapi";
 
-      alang = "fr,en";
-      slang = "fr,en";
+        save-position-on-quit = "yes";
+        keep-open = "yes";
 
-      deband = "yes";
-      volume-max = "150";
+        alang = "fr,en";
+        slang = "fr,en";
+
+        deband = "yes";
+        volume-max = "150";
+      };
     };
   };
 }

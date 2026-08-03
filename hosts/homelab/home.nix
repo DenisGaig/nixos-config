@@ -1,5 +1,14 @@
 {...}: {
   userSettings = {
+    desktop = {
+      enable = true;
+    };
+
+    shell = {
+      enable = true;
+      apps.enable = true;
+    };
+
     web = {
       enable = true;
       browser = "brave";
@@ -9,9 +18,8 @@
       enable = true;
     };
 
-    shell = {
+    documents = {
       enable = true;
-      apps.enable = true;
     };
   };
 }

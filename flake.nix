@@ -21,7 +21,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./modules/system
-        ./hardware-configuration.nix
+        ./hosts/homelab
         home-manager.nixosModules.home-manager
         {
           home-manager = {

@@ -32,22 +32,17 @@ let
     ];
   };
 in {
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs;
     [
       clang-tools
       gcc
       lm_sensors
-      neovim
       playerctl
       pwvucontrol
-      syncthing
       tree-sitter
       wget
     ]
     ++ [myParsers];
 
-  # inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
   environment.variables.NVIM_TREESITTER_PARSERS = "${myParsers}";
 }

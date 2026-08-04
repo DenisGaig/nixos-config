@@ -1,9 +1,13 @@
-{...}: {
+{pkgs, ...}: {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    lm_sensors
+  ];
 
   # Define the zram Swap (50% for 8G on 16G)
   zramSwap = {

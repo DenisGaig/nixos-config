@@ -2,6 +2,9 @@
   config = {
     systemSettings = {
       hyprland.enable = true;
+
+      neovim.enable = true;
+
       ssh.enable = true;
       syncthing.enable = true;
     };

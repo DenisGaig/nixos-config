@@ -38,6 +38,8 @@ in {
       };
     };
 
+    # SYNTAXE POUR LE SERVICE SANS HOME-MANAGER
+
     # systemd.user.services.flake-update-reminder = {
     #   description = "Rappel mise à jour de flake.nix";
 

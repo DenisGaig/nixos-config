@@ -37,5 +37,7 @@ in {
         package = pkgs.capitaine-cursors;
       };
     };
+
+    userSettings.flakeReminder.enable = lib.mkDefault true;
   };
 }

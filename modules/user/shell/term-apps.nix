@@ -18,6 +18,7 @@ in {
       calc
       curl
       curl.dev
+      jq
       rsync
       wget
       wl-clipboard

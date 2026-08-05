@@ -41,11 +41,12 @@ in {
         gb = "git branch";
         gf = "git fetch";
         gm = "git merge";
+        gw = "git switch";
       };
 
       shellAbbrs = {
         nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab";
-        # brain = "ssh toshiba -t 'cd ~/brain && nvim'";
+        nrb = "sudo nixos-rebuild build --flake /etc/nixos#denislab";
       };
 
       interactiveShellInit = ''

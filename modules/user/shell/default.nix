@@ -46,7 +46,7 @@ in {
 
       shellAbbrs = {
         nrs = "sudo nixos-rebuild switch --flake /etc/nixos#denislab";
-        nrb = "sudo nixos-rebuild build --flake /etc/nixos#denislab";
+        nrb = "sudo nixos-rebuild build --flake /etc/nixos#denislab --no-link";
       };
 
       interactiveShellInit = ''

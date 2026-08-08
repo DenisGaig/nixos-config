@@ -1,14 +1,12 @@
 {pkgs, ...}: let
-  nixGarbage = import ../../../pkgs/nix-garbage-maintenance.nix {inherit pkgs;};
+  nixGarbageMaintenance = import ../../../pkgs/nix-garbage-maintenance.nix {inherit pkgs;};
 in {
   systemd.services.nix-garbage-maintenance = {
-    Unit = {
-      Description = "Maintenance automatique du store NixOS";
-    };
+    description = "Maintenance automatique du store NixOS";
 
-    Service = {
+    serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${nixGarbage}/bin/nix-garbage-maintenance";
+      ExecStart = "${nixGarbageMaintenance}/bin/nix-garbage-maintenance";
     };
   };
 

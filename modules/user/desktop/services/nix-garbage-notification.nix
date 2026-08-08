@@ -8,7 +8,7 @@
   cfg = config.userSettings.nixGarbageNotification;
 in {
   options.userSettings.nixGarbageNotification = {
-    enable = lib.mkEnableOption "Notification de maintenance du store NixOS";
+    enable = lib.mkEnableOption "Installe la notification de maintenance du store NixOS";
   };
 
   config = lib.mkIf cfg.enable {
@@ -29,7 +29,7 @@ in {
       };
 
       Timer = {
-        OnStartupSec = "5s";
+        OnStartupSec = "10s";
         Persistent = false;
         Unit = "nix-garbage-notification.service";
       };

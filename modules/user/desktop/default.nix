@@ -16,6 +16,7 @@ in {
       hyprpaper
       hyprpicker
       rofi
+      rofimoji
       thunar
       waybar
       wlogout
@@ -38,6 +39,8 @@ in {
       };
     };
 
+    # Gestion des services de notification situés dans ./services/
     userSettings.flakeReminder.enable = lib.mkDefault true;
+    userSettings.nixGarbageNotification.enable = lib.mkDefault true;
   };
 }

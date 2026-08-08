@@ -4,7 +4,6 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs; [
     jq
-    libnotify
     nix
   ];
 
@@ -23,20 +22,25 @@ pkgs.writeShellApplication {
     fi
     }
 
-    size_before=$(nix path-info --json --all | jq 'map(.narSize) | add // 0')
+    size_before=$(nix path-info --json --all --json-format | jq 'map(.narSize) | add // 0')
 
     nix-collect-garbage --delete-older-than 20d
 
-    size_after=$(nix path-info --json --all | jq 'map(.narSize) | add // 0')
+    size_after=$(nix path-info --json --all --json-format | jq 'map(.narSize) | add // 0')
 
     free_size=$((size_before - size_after))
+    store_size=$size_after
 
     free_display=$(human_size "$free_size")
     store_display=$(human_size "$store_size")
 
     generations=$(find /nix/var/nix/profiles -name "system-*-link" | wc -l)
 
+    date=$(date +"%d/%m/%Y %H:%M:%S")
+
     message="
+    $date
+
     ✔  Nettoyage du store terminé
 
     ✔ $free_display récupérés
@@ -46,8 +50,8 @@ pkgs.writeShellApplication {
     🗑️ Générations conservées : $generations
     "
 
-    if (( free_size > 0 )); then
-        notify-send "🧹 Maintenance NixOS" "$message"
-    fi
+    mkdir -p /run/nix-gc
+    printf "%s" "$message" > "/run/nix-gc/$(date +%s).report"
+
   '';
 }

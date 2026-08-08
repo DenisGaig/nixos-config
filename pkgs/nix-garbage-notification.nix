@@ -7,16 +7,33 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    filename="/run/nix-gc/report"
+    shopt -s nullglob
 
-    if [ ! -f "$filename" ]; then
+    reports=(/run/nix-gc/*.report)
+
+    (( ''${#reports[@]} == 0 )) && exit 0
+
+    report="''${reports[0]}"
+
+    timestamp=$(basename "$report" .report)
+
+    cachefile="$HOME/.cache/nix-gc.last"
+
+    if [[ -f "$cachefile" ]]; then
+        last_seen=$(<"$cachefile")
+    else
+        last_seen=""
+    fi
+
+    if [[ "$timestamp" == "$last_seen" ]]; then
         exit 0
     fi
 
-    msg=$(<"$filename")
-    rm "$filename"
+    msg=$(<"$report")
 
     [[ -z "$msg" ]] && exit 0
         notify-send "🧹 Maintenance NixOS"  "$msg"
+
+    printf "%s\n" "$timestamp" > "$cachefile"
   '';
 }

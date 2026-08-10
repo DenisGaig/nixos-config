@@ -1,4 +1,5 @@
-{...}: {
+# Pas besoin de "{ ... } :" si aucun attribut n'est fourni
+{
   # Configuration du chargeur de démarrage
 
   # Use the systemd-boot EFI boot loader.

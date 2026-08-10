@@ -50,19 +50,19 @@ in {
       };
 
       interactiveShellInit = ''
-            set -U fish_greeting
+        set -U fish_greeting
 
-            fish_config theme choose "Dracula Official"
+        fish_config theme choose "Dracula Official"
 
-            set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+        set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 
-            if not string match -q -- $PNPM_HOME $PATH
-              set -gx PATH "$PNPM_HOME" $PATH
-            end
+        if not string match -q -- $PNPM_HOME $PATH
+          set -gx PATH "$PNPM_HOME" $PATH
+        end
 
-            fish_add_path "$HOME/.npm-global/bin"
+        fish_add_path "$HOME/.npm-global/bin"
 
-            set show_file_or_dir_preview \
+        set show_file_or_dir_preview \
           "if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
         set -gx FZF_CTRL_T_OPTS \
@@ -70,6 +70,8 @@ in {
 
         set -gx FZF_ALT_C_OPTS \
           "--preview 'eza --tree --color=always {} | head -200'"
+
+        set -gx LIBVIRT_DEFAULT_URI qemu:///system
       '';
     };
 

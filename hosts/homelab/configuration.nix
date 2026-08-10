@@ -7,6 +7,10 @@
 
       ssh.enable = true;
       syncthing.enable = true;
+
+      virtualization = {
+        virtualMachines.enable = true;
+      };
     };
 
     users.users.denis = {

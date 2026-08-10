@@ -22,9 +22,6 @@ in {
       qemu.runAsRoot = false;
     };
 
-    # Concaténation dans extraGroups de tous les groupes des utilisateurs normaux
-    users.users = lib.genAttrs normalUsers (_: {
-      extraGroups = ["libvirtd"];
-    });
+    users.groups.libvirtd.members = normalUsers;
   };
 }

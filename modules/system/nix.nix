@@ -1,8 +1,10 @@
 {pkgs, ...}: {
+  # Lix comme implémentation de Nix
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   # Enable flakes
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    download-buffer-size = 268435456;
     trusted-users = ["root" "denis"];
   };
 

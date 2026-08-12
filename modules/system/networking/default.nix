@@ -1,10 +1,16 @@
 {...}: {
   # Configuration du réseau
+  networking = {
+    hostName = "denislab";
 
-  networking.hostName = "denislab"; # Define your hostname.
+    networkmanager.enable = true;
 
-  # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
+    useDHCP = false;
+
+    bridges.br0.interfaces = ["enp0s31f6"];
+
+    interfaces.br0.useDHCP = true;
+  };
 
   # Enable Tailscale
   services.tailscale.enable = true;

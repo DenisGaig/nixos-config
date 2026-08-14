@@ -5,7 +5,7 @@
   # Enable flakes
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    trusted-users = ["root" "denis"];
+    trusted-users = ["root" "denis"]; # Permet à denis d'administrer Nix sans sudo
   };
 
   # Optimisation automatique du store Nix : Nix recherche les fichiers

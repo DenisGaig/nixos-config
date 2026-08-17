@@ -2,6 +2,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./tailscale-cert.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -42,14 +43,34 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  # Configuration de Nginx
+  services.nginx = {
+    enable = true;
+
+    virtualHosts."forgejo.tail3e17a7.ts.net" = {
+      forceSSL = true;
+
+      sslCertificate = "/etc/tailscale-certs/forgejo.tail3e17a7.ts.net.crt";
+
+      sslCertificateKey = "/etc/tailscale-certs/forgejo.tail3e17a7.ts.net.key";
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3000";
+      };
+    };
+  };
+
   # Configuration de Forgejo avec PostgreSQL
   services.forgejo = {
     enable = true;
     database.type = "postgres";
 
     settings.server = {
-      DOMAIN = "192.168.1.122";
-      ROOT_URL = "http://192.168.1.122:3000/";
+      #DOMAIN = "192.168.1.122";
+      #ROOT_URL = "http://192.168.1.122:3000/";
+      DOMAIN = "forgejo.tail3e17a7.ts.net";
+      ROOT_URL = "https://forgejo.tail3e17a7.ts.net/";
+      HTTP_PORT = 3000;
     };
 
     disableRegistration = true; # Empêche la création de nouveau compte par la page d'inscription

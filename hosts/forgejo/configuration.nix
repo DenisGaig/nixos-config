@@ -14,6 +14,12 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
+  # Enable the Tailscale daemon.
+  services.tailscale.enable = true;
+
+  networking.firewall.trustedInterfaces = ["tailscale0"];
+  networking.firewall.checkReversePath = "loose";
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.denis = {
     isNormalUser = true;

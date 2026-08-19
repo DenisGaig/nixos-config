@@ -7,6 +7,7 @@
   users.users.denis = {
     isNormalUser = true;
     extraGroups = ["wheel"];
+    hashedPassword = "$y$j9T$U1IItB65E5yJ2WLHrvVN00$ZeiJ/86C74s7dWHF07iA4nGl4Z57cwkVHZkbDgYRlT2";
   };
 
   security.sudo.wheelNeedsPassword = false;
@@ -43,8 +44,12 @@
     virtualisation = {
       memorySize = 2048;
       cores = 2;
-
       forwardPorts = [
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
         {
           from = "host";
           host.port = 3001;

@@ -3,6 +3,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./tailscale-cert.nix
+    ./forgejo-backup.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,6 +32,9 @@
     "root"
     "denis"
   ];
+
+  # Transmet la définition xterm kitty à la VM
+  environment.enableAllTerminfo = true;
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
@@ -72,8 +76,7 @@
       ROOT_URL = "https://forgejo.tail3e17a7.ts.net/";
       HTTP_PORT = 3000;
     };
-
-    disableRegistration = true; # Empêche la création de nouveau compte par la page d'inscription
+    settings.service.DISABLE_REGISTRATION = true; # Empêche la création de nouveau compte par la page d'inscription
   };
 
   system.stateVersion = "26.05"; # Did you read the comment?

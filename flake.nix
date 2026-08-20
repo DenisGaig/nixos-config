@@ -16,6 +16,7 @@
     home-manager,
     ...
   }: {
+    # Configuration principale de l'hôte
     nixosConfigurations.denislab = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};

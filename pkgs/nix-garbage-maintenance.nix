@@ -22,11 +22,11 @@ pkgs.writeShellApplication {
     fi
     }
 
-    size_before=$(nix path-info --json --all --json-format | jq 'map(.narSize) | add // 0')
+    size_before=$(nix path-info --json --all | jq 'map(.narSize) | add // 0')
 
     nix-collect-garbage --delete-older-than 20d
 
-    size_after=$(nix path-info --json --all --json-format | jq 'map(.narSize) | add // 0')
+    size_after=$(nix path-info --json --all | jq 'map(.narSize) | add // 0')
 
     free_size=$((size_before - size_after))
     store_size=$size_after

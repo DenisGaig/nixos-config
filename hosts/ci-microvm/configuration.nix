@@ -7,37 +7,6 @@
 
   services.tailscale.enable = true;
 
-  # User et groupe pour Forgejo
-  users.groups.forgejo-runner = {};
-
-  # users.users.forgejo-runner = {
-  #   isSystemUser = true;
-  #   group = "forgejo-runner";
-  #   home = "/home/forgejo-runner";
-  #   createHome = true;
-  # };
-
-  users.users.forgejo-runner = {
-    isSystemUser = true;
-    group = "forgejo-runner";
-    home = "/home/forgejo-runner";
-    createHome = true;
-
-    subUidRanges = [
-      {
-        startUid = 100000;
-        count = 65536;
-      }
-    ];
-
-    subGidRanges = [
-      {
-        startGid = 100000;
-        count = 65536;
-      }
-    ];
-  };
-
   # User pour l'administration
   users.users.test = {
     isNormalUser = true;
@@ -97,8 +66,19 @@
 
   environment.systemPackages = with pkgs; [
     btop
-    forgejo-runner
   ];
 
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-runner;
+    instances.ci = {
+      enable = true;
+      name = "ci-microvm";
+      url = "https://forgejo.tail3e17a7.ts.net";
+      token = "TON-TOKEN"; # ou tokenFile = "/run/secrets/forgejo-runner-token";
+      labels = [
+        "docker:docker://node:22-bookworm"
+      ];
+    };
+  };
   system.stateVersion = "26.05";
 }

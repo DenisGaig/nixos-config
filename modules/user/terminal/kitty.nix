@@ -36,7 +36,7 @@ in {
         italic_font = "Victor Mono Italic";
         font_size = 12;
 
-        background_opacity = "0.95";
+        background_opacity = "0.85";
 
         hide_window_decorations = "titlebar_only";
 

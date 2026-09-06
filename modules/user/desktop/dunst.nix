@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -18,7 +17,7 @@ in {
           origin = "top-right";
           offset = "12x12";
           width = 320;
-          height = 120;
+          height = "0 - 300";
           font = "HasklugNerdFont 11";
           padding = 14;
           horizontal_padding = 14;

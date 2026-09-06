@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   config = {
     systemSettings = {
       hyprland.enable = true;
@@ -11,6 +15,11 @@
       virtualization = {
         virtualMachines.enable = true;
       };
+    };
+
+    microvm.vms.ci-microvm = {
+      flake = self;
+      autostart = false;
     };
 
     users.users.denis = {

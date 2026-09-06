@@ -4,8 +4,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    microvm.url = "github:microvm-nix/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -13,14 +21,17 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    microvm,
     home-manager,
+    agenix,
     ...
   }: {
     # Configuration principale de l'hôte
     nixosConfigurations.denislab = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs self;};
       modules = [
+        microvm.nixosModules.host
         ./modules/system
         ./hosts/homelab
         home-manager.nixosModules.home-manager
@@ -42,6 +53,18 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/forgejo
+      ];
+    };
+
+    # Configuration de la VM microvm pour CI-runner
+    nixosConfigurations.ci-microvm = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs;};
+      modules = [
+        # Include the microvm module
+        microvm.nixosModules.microvm
+        agenix.nixosModules.default
+        ./hosts/ci-microvm
       ];
     };
 

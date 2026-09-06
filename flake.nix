@@ -11,6 +11,11 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -18,6 +23,7 @@
     nixpkgs,
     microvm,
     home-manager,
+    agenix,
     ...
   }: {
     # Configuration principale de l'hôte
@@ -57,6 +63,7 @@
       modules = [
         # Include the microvm module
         microvm.nixosModules.microvm
+        agenix.nixosModules.default
         ./hosts/ci-microvm
       ];
     };

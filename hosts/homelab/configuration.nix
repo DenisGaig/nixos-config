@@ -19,7 +19,7 @@
 
     microvm.vms.ci-microvm = {
       flake = self;
-      autostart = false;
+      autostart = true;
     };
 
     users.users.denis = {

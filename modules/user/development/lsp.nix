@@ -16,6 +16,7 @@ in {
       lua-language-server
       markdown-oxide
       nixd
+      typst
       vscode-langservers-extracted
       yaml-language-server
     ];

@@ -63,6 +63,7 @@ in {
         "ctrl+a>c" = "goto_session ~/.config/kitty/sessions/c.kitty-session";
         "ctrl+a>n" = "goto_session ~/.config/kitty/sessions/notes.kitty-session";
         "ctrl+a>l" = "goto_session ~/.config/kitty/sessions/cours.kitty-session";
+        "ctrl+a>t" = "goto_session ~/.config/kitty/sessions/typst.kitty-session";
 
         # Général
         "ctrl+equal" = "change_font_size all +2.0";

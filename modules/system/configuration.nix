@@ -9,6 +9,25 @@
     lm_sensors
   ];
 
+  # Remap les touches du clavier
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            capslock = "overload(control, esc)";
+            tab = "overload(altgr, tab)";
+          };
+          shift = {
+            space = "backspace";
+          };
+        };
+      };
+    };
+  };
+
   # Define the zram Swap (50% for 8G on 16G)
   zramSwap = {
     enable = true;

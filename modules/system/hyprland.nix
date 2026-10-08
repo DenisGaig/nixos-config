@@ -34,7 +34,7 @@ in {
     # Configure keymap in X11 avec remplace de la touche caps par la touche escape
     services.xserver.xkb = {
       layout = "fr";
-      options = "caps:escape";
+      #options = "caps:escape";
     };
 
     # services.xserver.xkb.options = "eurosign:e,caps:escape";

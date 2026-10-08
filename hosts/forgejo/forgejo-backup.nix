@@ -151,7 +151,7 @@
       sudo rsync -av \
         -e "ssh -i /home/denis/.ssh/forgejo_backup_ed25519" \
         /var/lib/forgejo/backups/ \
-        forgejo-backup@192.168.1.117:/srv/backups/forgejo/
+        forgejo-backup@192.168.1.120:/srv/backups/forgejo/
 
       echo
       echo "=== Sauvegarde sur le Dell terminée ==="

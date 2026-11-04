@@ -5,6 +5,11 @@
       dunst.enable = true;
     };
 
+    terminal = {
+      default = "kitty";
+      foot.enable = true;
+    };
+
     shell = {
       enable = true;
       apps.enable = true;

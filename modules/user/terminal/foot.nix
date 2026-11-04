@@ -21,11 +21,11 @@ in {
       settings = {
         main = {
           term = "xterm-256color";
-          font = "JetBrainsMono Nerd Font:size=13";
+          font = "JetBrainsMono Nerd Font:size=11";
           dpi-aware = "yes";
         };
 
-        colors = {
+        colors-dark = {
           alpha = 0.95;
           background = "282a36";
           foreground = "f8f8f2";

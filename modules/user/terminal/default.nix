@@ -3,15 +3,19 @@
   lib,
   ...
 }: {
-  options = {
-    userSettings.terminal = lib.mkOption {
+  options.userSettings.terminal = {
+    default = lib.mkOption {
+      type = lib.types.enum [
+        "kitty"
+        "foot"
+      ];
       default = "kitty";
       description = "Default terminal";
-      type = lib.types.enum ["kitty"];
     };
   };
 
   config = {
-    userSettings.kitty.enable = lib.mkDefault (config.userSettings.terminal == "kitty");
+    userSettings.kitty.enable =
+      lib.mkDefault (config.userSettings.terminal.default == "kitty");
   };
 }

@@ -79,7 +79,7 @@ in {
         "ctrl+right" = "next_window";
         "ctrl+left" = "previous_window";
 
-        "ctrl+e" = "kitten choose-files .";
+        "ctrl+shift+k" = "kitten choose-files .";
       };
 
       extraConfig = ''

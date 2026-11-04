@@ -16,6 +16,7 @@ in {
       gcc
       gnumake
       pkg-config
+      rustup
     ];
 
     programs.lazygit = {
@@ -28,7 +29,6 @@ in {
     userSettings.formatters.enable = lib.mkDefault true;
 
     home.sessionVariables = {
-      #PKG_CONFIG_PATH = "/etc/profiles/per-user/denis/lib/pkgconfig";
       PKG_CONFIG_PATH = "${config.home.profileDirectory}/lib/pkgconfig";
     };
   };

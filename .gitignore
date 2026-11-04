@@ -2,3 +2,4 @@ result
 
 *.qcow2
 ci-microvm.sock.lock
+ci-microvm.sock

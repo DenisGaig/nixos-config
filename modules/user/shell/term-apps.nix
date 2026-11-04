@@ -18,22 +18,13 @@ in {
       calc
       curl
       curl.dev
+      dysk
       jq
       rsync
+      television
       wget
       wl-clipboard
     ];
-
-    programs.fzf = {
-      enable = true;
-      enableFishIntegration = true;
-      historyWidget.command = "";
-      defaultCommand = "fd --type f --hidden --exclude .git";
-
-      defaultOptions = [
-        "--preview-window=right:50%:wrap"
-      ];
-    };
 
     programs.yazi.enable = true;
   };

@@ -18,7 +18,6 @@ in {
       calc
       curl
       curl.dev
-      dysk
       jq
       rsync
       television

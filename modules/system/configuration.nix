@@ -6,6 +6,8 @@
   # services.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
+    cliphist
+    dysk
     lm_sensors
   ];
 

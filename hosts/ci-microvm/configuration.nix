@@ -76,9 +76,13 @@ in {
   microvm = {
     hypervisor = "cloud-hypervisor";
 
-    mem = 512;
+    #mem = 512;
+    #hotplugMem = 2048;
+    #hotpluggedMem = 0;
 
-    hotplugMem = 2048;
+    mem = 2048;
+
+    hotplugMem = 0;
     hotpluggedMem = 0;
 
     interfaces = [
